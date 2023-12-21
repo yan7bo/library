@@ -7,8 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <dialog>
+        <button id="close-btn">Close</button>
+        <form>
+            <div>
+            <label for="book">Book Title:</label>
+            <input autofocus type="text" name="book" id="book">
+            </div>
+            <button type="button" id="add-book-btn">Add Book</button>
+        </form>
+    </dialog>
     <div class="functionBtns">
-        <button type="button" id="add-book">Add Book</button>
+        <button type="button" id="open-dialog-btn">Add Book</button>
+        <button type="button" id="reset-library">Reset</button>
+        <button type="button" id="add-library">Add Library</button>
     </div>
     <div class="library">
         <ul>

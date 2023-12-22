@@ -10,9 +10,24 @@
     <dialog>
         <button id="close-btn">Close</button>
         <form>
-            <div>
-            <label for="book">Book Title:</label>
-            <input autofocus type="text" name="book" id="book">
+            <div class="form-row">
+                <label for="book-title">Title:</label>
+                <input autofocus type="text" name="book-title" id="book-title">
+            </div>
+            <div class="form-row">
+                <label for="book-author">Author:</label>
+                <input type="text" name="book-author" id="book-author">
+            </div>
+            <div class="form-row">
+                <label for="book-pages">Pages:</label>
+                <input type="number" name="book-pages" id="book-pages">
+            </div>
+            <div class="form-row">
+                <label for="book-read">Read?</label>
+                <select name="book-read" id="book-read">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
             </div>
             <button type="button" id="add-book-btn">Add Book</button>
         </form>
@@ -24,9 +39,6 @@
     </div>
     <div class="library">
         <ul>
-            <li class="book" data-book="book1">Book1</li>
-            <li class="book" data-book="book2">Book2</li>
-            <li class="book" data-book="book3">Book3</li>
         </ul>
     </div>
 

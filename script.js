@@ -29,17 +29,6 @@ function addLibrary(myLibrary) {
     })
 }
 
-
-
-const book1 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowlings", 10, false);
-myLibrary.push(book1);
-
-const book2 = new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowlings", 12, true);
-myLibrary.push(book2);
-
-addLibrary(myLibrary);
-
-// Adds ability to reset library to reset-library button
 function resetLibrary() {
     // resets the books displayed on index.html
     document.querySelectorAll("li").forEach((item) => {
@@ -47,37 +36,63 @@ function resetLibrary() {
     })
 }
 
-const resetLibraryBtn = document.querySelector("#reset-library");
-resetLibraryBtn.addEventListener("click", resetLibrary);
 
-// Adds ability to display library to add-library button
-const addLibraryBtn = document.querySelector("#add-library");
-addLibraryBtn.addEventListener("click", () => {
+
+
+
+function main() {
+    // initialize 2 books into myLibrary
+    const book1 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowlings", 10, false);
+    myLibrary.push(book1);
+
+    const book2 = new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowlings", 12, true);
+    myLibrary.push(book2);
+
     addLibrary(myLibrary);
-})
 
-// Adding dialog to add books
-const dialog = document.querySelector("dialog");
-const openDialogBtn = document.querySelector("#open-dialog-btn");
-const closeDialogBtn = document.querySelector("#close-btn");
-const addBookBtn = document.querySelector("#add-book-btn");
-const bookInput = document.querySelector("#book");
+    // Adds ability to reset library to reset-library button
+    const resetLibraryBtn = document.querySelector("#reset-library");
+    resetLibraryBtn.addEventListener("click", resetLibrary);
 
-// show dialog
-openDialogBtn.addEventListener("click", () => {
-    dialog.showModal();
-})
-
-// close dialog
-closeDialogBtn.addEventListener("click", () => {
-    dialog.close();
-})
-
-// submit book
-addBookBtn.addEventListener("click", (event) => {
-    const book = new Book(bookInput.value);
-    myLibrary.push(book);
-    resetLibrary();
+    // Adds ability to display library to add-library button
+    const addLibraryBtn = document.querySelector("#add-library");
+    addLibraryBtn.addEventListener("click", () => {
     addLibrary(myLibrary);
-    dialog.close();
-})
+    })
+
+    // Adding dialog to add books
+    const dialog = document.querySelector("dialog");
+    const openDialogBtn = document.querySelector("#open-dialog-btn");
+    const closeDialogBtn = document.querySelector("#close-btn");
+    const addBookBtn = document.querySelector("#add-book-btn");
+    
+
+    // show dialog
+    openDialogBtn.addEventListener("click", () => {
+        dialog.showModal();
+    })
+
+    // close dialog
+    closeDialogBtn.addEventListener("click", () => {
+        dialog.close();
+    })
+
+    // submit book
+
+    addBookBtn.addEventListener("click", (event) => {
+        const title = document.querySelector("#book-title").value;
+        const author = document.querySelector("#book-author").value;
+        const pages = +document.querySelector("#book-pages").value;
+        const read = false;
+        if(document.querySelector("#book-read").value == "Yes") {
+            read = true;
+        }
+        const book = new Book(title, author, pages, read);
+        myLibrary.push(book);
+        resetLibrary();
+        addLibrary(myLibrary);
+        dialog.close();
+    })
+}
+
+main();

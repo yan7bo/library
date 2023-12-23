@@ -1,6 +1,10 @@
 ul {
     list-style-type: none;
-    padding-left: 100px;
+    padding-left: 50px;
+}
+
+li button {
+    margin-right: 1em;
 }
 
 input:invalid {

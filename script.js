@@ -24,7 +24,18 @@ function addLibrary(myLibrary) {
     const ul = document.querySelector("ul");
     myLibrary.forEach((book) => {
         const newItem = document.createElement("li");
-        newItem.textContent = book.info();
+        const bookBtn = document.createElement("button");
+        const bookSpan = document.createElement("span");
+
+        bookBtn.textContent = "Delete";
+        bookBtn.type = "button";
+        bookBtn.classList.add("deleteBtn");
+        newItem.appendChild(bookBtn);
+
+        bookSpan.textContent = book.info();
+        bookSpan.classList.add("bookInfo");
+        newItem.appendChild(bookSpan);
+
         ul.appendChild(newItem);
     })
 }
@@ -83,7 +94,7 @@ function main() {
         const title = document.querySelector("#book-title").value;
         const author = document.querySelector("#book-author").value;
         const pages = +document.querySelector("#book-pages").value;
-        const read = false;
+        var read = false;
         if(document.querySelector("#book-read").value == "Yes") {
             read = true;
         }

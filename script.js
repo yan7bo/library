@@ -98,20 +98,38 @@ function main() {
     // submit book
 
     addBookBtn.addEventListener("click", (event) => {
-        const title = document.querySelector("#book-title").value;
-        const author = document.querySelector("#book-author").value;
-        const pages = +document.querySelector("#book-pages").value;
-        var read = false;
-        if(document.querySelector("#book-read").value == "Yes") {
-            read = true;
-        }
-        const book = new Book(title, author, pages, read);
-        myLibrary.push(book);
-        resetLibrary();
-        addLibrary();
-        dialog.close();
-    })
+        // check if the input fields are non-empty
 
+        const title = document.querySelector("#book-title");
+        const author = document.querySelector("#book-author");
+        const pages = document.querySelector("#book-pages");
+        const read = document.querySelector("#book-read");
+
+        if(title.checkValidity() && author.checkValidity() && pages.checkValidity()) {
+            const title = document.querySelector("#book-title").value;
+            const author = document.querySelector("#book-author").value;
+            const pages = +document.querySelector("#book-pages").value;
+            var readBool = false;
+            if(read.value == "Yes") {
+                readBool = true;
+            }
+            const book = new Book(title.value, author.value, +pages.value, readBool);
+            myLibrary.push(book);
+            resetLibrary();
+            addLibrary();
+            dialog.close();
+        } else {
+            if(!title.checkValidity()) {
+                title.nextElementSibling.style.color = "red";
+            }
+            if(!author.checkValidity()) {
+                author.nextElementSibling.style.color = "red";
+            }
+            if(!pages.checkValidity()) {
+                pages.nextElementSibling.style.color = "red";
+            }
+        }
+    })
 }
 
 main();

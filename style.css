@@ -10,3 +10,12 @@ li button {
 input:invalid {
     border: 1px solid red;
 }
+
+.form-row {
+    margin-bottom: 0.5em;
+}
+
+.form-row div {
+    color: #fff;
+    font-size: 12px;
+}

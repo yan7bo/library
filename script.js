@@ -6,8 +6,8 @@ function Book(title, author="", pages="", read=false) {
     this.pages = pages;
     this.read = read;
     this.info = function() {
-        output = title + " by " + author + ", " + pages + " pages, ";
-        if(read) {
+        output = this.title + " by " + this.author + ", " + this.pages + " pages, ";
+        if(this.read) {
             output += "finished reading";
             return output;
         } else {
@@ -23,13 +23,19 @@ function addLibrary() {
     const ul = document.querySelector("ul");
     myLibrary.forEach((book) => {
         const newItem = document.createElement("li");
-        const bookBtn = document.createElement("button");
+        const deleteBtn = document.createElement("button");
+        const readBtn = document.createElement("button");
         const bookSpan = document.createElement("span");
 
-        bookBtn.textContent = "Delete";
-        bookBtn.type = "button";
-        bookBtn.classList.add("deleteBtn");
-        newItem.appendChild(bookBtn);
+        deleteBtn.textContent = "Delete";
+        deleteBtn.type = "button";
+        deleteBtn.classList.add("deleteBtn");
+        newItem.appendChild(deleteBtn);
+
+        readBtn.textContent = "Read";
+        readBtn.type = "button";
+        readBtn.classList.add("readBtn");
+        newItem.appendChild(readBtn);
 
         bookSpan.textContent = book.info();
         bookSpan.classList.add("bookInfo");
@@ -38,11 +44,20 @@ function addLibrary() {
         ul.appendChild(newItem);
 
         // add event listener to the delete button
-        bookBtn.addEventListener("click", () => {
+        deleteBtn.addEventListener("click", () => {
             myLibrary.splice(myLibrary.indexOf(book), 1);
             resetLibrary();
             addLibrary();
-            console.log(myLibrary);
+        })
+
+        // add event listener to the read button to change the read attribute for book
+        readBtn.addEventListener("click", () => {
+            if(book.read) {
+                book.read = false;
+            } else {
+                book.read = true;
+            }
+            bookSpan.textContent = book.info();
         })
     })
 }
@@ -53,10 +68,6 @@ function resetLibrary() {
         item.remove();
     })
 }
-
-
-
-
 
 function main() {
     // initialize 2 books into myLibrary

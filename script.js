@@ -119,13 +119,19 @@ function main() {
             addLibrary();
             dialog.close();
         } else {
-            if(!title.checkValidity()) {
+            if(title.checkValidity()) {
+                title.nextElementSibling.style.color = "#fff";
+            } else {
                 title.nextElementSibling.style.color = "red";
             }
-            if(!author.checkValidity()) {
+            if(author.checkValidity()) {
+                author.nextElementSibling.style.color = "#fff";
+            } else {
                 author.nextElementSibling.style.color = "red";
             }
-            if(!pages.checkValidity()) {
+            if(pages.checkValidity()) {
+                pages.nextElementSibling.style.color = "#fff";
+            } else {
                 pages.nextElementSibling.style.color = "red";
             }
         }

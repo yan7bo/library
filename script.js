@@ -9,18 +9,17 @@ function Book(title, author="", pages="", read=false) {
         output = title + " by " + author + ", " + pages + " pages, ";
         if(read) {
             output += "finished reading";
-            console.log(output);
             return output;
         } else {
             output += "not read yet";
-            console.log(output);
             return output;
         }
         
     }
 }
 
-function addLibrary(myLibrary) {
+function addLibrary() {
+    // displays the library and adds functionality to delete buttons
     const ul = document.querySelector("ul");
     myLibrary.forEach((book) => {
         const newItem = document.createElement("li");
@@ -37,6 +36,14 @@ function addLibrary(myLibrary) {
         newItem.appendChild(bookSpan);
 
         ul.appendChild(newItem);
+
+        // add event listener to the delete button
+        bookBtn.addEventListener("click", () => {
+            myLibrary.splice(myLibrary.indexOf(book), 1);
+            resetLibrary();
+            addLibrary();
+            console.log(myLibrary);
+        })
     })
 }
 
@@ -59,7 +66,7 @@ function main() {
     const book2 = new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowlings", 12, true);
     myLibrary.push(book2);
 
-    addLibrary(myLibrary);
+    addLibrary();
 
     // Adds ability to reset library to reset-library button
     const resetLibraryBtn = document.querySelector("#reset-library");
@@ -68,7 +75,7 @@ function main() {
     // Adds ability to display library to add-library button
     const addLibraryBtn = document.querySelector("#add-library");
     addLibraryBtn.addEventListener("click", () => {
-    addLibrary(myLibrary);
+    addLibrary();
     })
 
     // Adding dialog to add books
@@ -101,9 +108,10 @@ function main() {
         const book = new Book(title, author, pages, read);
         myLibrary.push(book);
         resetLibrary();
-        addLibrary(myLibrary);
+        addLibrary();
         dialog.close();
     })
+
 }
 
 main();
